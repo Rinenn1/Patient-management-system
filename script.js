@@ -19,3 +19,6 @@ const policyNumber = document.getElementById('insurancePolicyNumberInput');
 const submitButton = document.querySelector('#button');
 
 
+function searchesPatient(){
+    
+}
