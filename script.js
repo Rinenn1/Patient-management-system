@@ -22,54 +22,43 @@ const policyNumber = document.getElementById('insurancePolicyNumberInput');
 const submitButton = document.querySelector('#button');
 
 
-/* function searchesPatient(){
-
-} */
-
-/* function patientListArray (){
-
-} */
-
-
 
 const data = {};
 const displayData = {};
-const errors = [];
 
-function isValidNumber (value){
+function isValidInput (value){
     return !isNaN(value) && Number.isInteger(Number(value));
 } 
 
 function validateData (){
-    errors.length = 0;
     displayList.innerHTML = "";
     
     if (!patientFirstName.value || typeof patientFirstName.value !== "string") {
-        errors.push("Invalid First Name");
+        alert("Invalid First Name");
     } else {
         data.firstName = patientFirstName.value.trim();
     }
     
     if (!patientLastName.value || typeof patientLastName.value !== "string") {
-        errors.push("Invalid Last Name");
+        alert("Invalid Last Name");
     } else {
         data.lastName = patientLastName.value.trim();
     }
 
     const age = Number(patientAge.value)
-    if (typeof age !== "number"){
-        errors.push("Invalid Input");
+    if (!isNaN(age)){
+        alert("Invalid Input");
     } 
-    if (!isValidNumber(patientAge) || age <= 0 || age > 120){
-            errors.push("Invalid Input");
+    if (!isValidInput(age) || age <= 0 || age > 120){
+        alert("Invalid Input");
     }
     else {
-        data.Age = patientAge.value.trim();
+        data.age = patientAge.value.trim();
     }
 
     
     if (!isValidInput(phoneNumber.value) || phoneNumber.value.length < 10){
-        errors.push("Invalid Input");
+        alert("Invalid Input");
     }
     else {
         data.phoneNumber = phoneNumber.value.trim();
@@ -78,15 +67,15 @@ function validateData (){
     
 
     if (!isValidInput(idNumber.value) || idNumber.value.length < 7){
-        errors.push("Invalid Input. ID Number must be a numeric value with at least 7 digits.");
+        alert("Invalid Input. ID Number must be a numeric value with at least 7 digits.");
     }
     else {
         data.idNumber = idNumber.value.trim();
     }
 
 
-    if (!emailAddress.includes("@") || !emailAddress.includes(".")){
-        errors.push("Invalid Input");
+    if (!emailAddress.value.includes("@") || !emailAddress.Value.includes(".")){
+        alert("Invalid Input");
     }
     else {
         data.emailAddress = emailAddress.value.trim();
@@ -95,7 +84,7 @@ function validateData (){
 
 
     if (typeof diagnosis !== "string" || !diagnosis.value){
-        errors.push("Invalid Input");
+        alert("Invalid Input");
     } 
     else {
         data.diagnosis = diagnosis.value.trim();
@@ -103,42 +92,42 @@ function validateData (){
 
 
     if (!emergencyFirstName.value || typeof emergencyFirstName.value !== "string") {
-        errors.push("Invalid First Name");
+        alert("Invalid First Name");
     } else {
         data.emergencyFirstName = emergencyFirstName.value.trim();
     }
     
     if (!emergencyLastName.value || typeof emergencyLastName.value !== "string") {
-        errors.push("Invalid Last Name");
+        alert("Invalid Last Name");
     } else {
         data.emergencyLastName = emergencyLastName.value.trim();
     }
 
 
     if (typeof relationship.value !== "string" || !relationship.value){
-        errors.push("Invalid Input");
+        alert("Invalid Input");
     } 
     else {
         data.emergencyRelation = relationship.value.trim();
     }
 
-    if (!isValidInput(emergencyTel) || emergencyTel.length < 10){
-        errors.push("Invalid Input! Emergency Contact Number must be a numeric value with at least 10 digits.");
+    if (!isValidInput(emergencyTel.value) || emergencyTel.value.length < 10){
+        alert("Invalid Input! Emergency Contact Number must be a numeric value with at least 10 digits.");
     } 
     else {
         data.emergencyPhone = emergencyTel.trim();
     }
 
-    if (typeof insuranceProvider !== "string" || !insuranceProvider){
-        errors.push("Invalid Input");
+    if (typeof insuranceProvider.value !== "string" || !insuranceProvider.value){
+        alert("Invalid Input");
     } 
     else {
-        data.insuranceProvider = insuranceProvider.trim();
+        data.insuranceProvider = insuranceProvider.value.trim();
         displayData.insuranceProvider = insuranceProvider.value.trim();
     }
 
     if (isValidInput(policyNumber.value) || !policyNumber.value || typeof policyNumber.value !== "number"){
-        errors.push("Invalid Input");
+        alert("Invalid Input");
     } 
     else {
         data.policyNumber = policyNumber.value.trim();
@@ -147,31 +136,24 @@ function validateData (){
 
 
     if (errors.length > 0) {
-        console.error("Invalid Inputs");
+        console.error(errors);
         return true;
     }
 
-    function displayValidatedData() {
-        for (const [key, value] of displayData) {
-          const listItem = document.createElement("li");
-          listItem.textContent = `${key}: ${value}`;
-          patientList.append(listItem);
-        }
-      }
-
 }
+function displayValidatedData() {
+    for (const [key, value] in displayData) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${key}: ${value}`;
+        patientList.append(listItem);
+    }
+}  
 
-
-
-    
 submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     validateData();
 });
 
-function addToList(){
-
-}
 
 
 
