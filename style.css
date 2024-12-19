@@ -97,11 +97,40 @@ body {
     padding: 1rem;
 }
 
+.names{
+    display: flex;
+    flex-direction: row;
+}
+
+#firstNameInput {
+    width: 50%;
+}
+
+#lastNameInput {
+    width: 50%;
+}
+
+.emergencyNames{
+    display: flex;
+    flex-direction: row;
+}
+
+#emergencyFirstNameInput {
+    width: 50%;
+}
+
+#emergencyLastNameInput {
+    width: 50%;
+}
+
 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 0.5rem;
-    border-radius: 1rem;
+    border-radius: 2rem;
     width: 700px;
-    align-self: center;
     margin-left: 10px;
     background-color: #007BFF;
     color: #fff;
