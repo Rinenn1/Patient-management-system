@@ -1,4 +1,4 @@
-<!DO class="typing"CTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,69 +7,93 @@
     <title>Patient Management System</title>
 </head>
 <body>
+
+    <!--The page header-->
     <section>
         <div class="headerText">
             <h1 class="text">Patient Management System</h1>
         </div>
     </section>
-
-    <section class="main">
-        <div class="form">
-            <h2>Please fill out the following form</h2>
-            <form class="input">
-                <p>Personal Details</p>
-                <div id="personal">
-                    <input id="input" class="typing" type="text" placeholder="Full Name...">
-                    <input id="input" class="typing" type="number" placeholder="Age...">
-                    <select id="genders" name="Gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <input id="input" class="typing" type="tel" placeholder="Phone Number">
-                    <input id="input" class="typing" type="email" placeholder="Email Address">
-                    <input id="input" class="typing" type="text" placeholder="Home Address">
-                </div>
-                
-            </form>
-            <form class="input">
-                <p>Medical Information</p>
-                <div id="medical">
-                    <input id="input" class="typing" type="text" placeholder="Diagnosis">
-                    <input id="input" class="typing" type="date" placeholder="Admission Date...">
-                    <input id="input" class="typing" type="date" placeholder="Follow-Up Date ...">
-                    <input id="input" class="typing" type="date" placeholder="Discharge Date...">
-                </div>  
-            </form>    
-            <form class="input id="input"" class="input">
-                <p>Emergency Contact</p>
-                <div id="emergency">
-                    <input id="input" class="typing" type="text" placeholder="Name...">
-                    <input id="input" class="typing" type="text" placeholder="Relationship...">
-                    <input id="input" class="typing" type="tel" placeholder="Phone Number">
-                </div>
-            </form>
-            <form class="input id="input"" class="input">
-                <p>Insurance</p>
-                <div id="insurance">
-                    <input id="input" class="typing" type="text" placeholder="Provider Name...">
-                    <input id="input" class="typing" type="text" placeholder="Policy Number..">
-                </div>
-            </form>
-            <button class="btn" id="button">SUBMIT</button>
-        </div>
-    </section>
-
+    
+    <!--Search bar input-->
     <section class="search">
         <input id="searchInput" class="input" type="search" placeholder="Search Patient...">
     </section>
 
+    <!--The patient list-->
     <section class="list" id="patientsList">
         <h2>List of Patients</h2>
         <ul id="generalPatients">
             
         </ul>
     </section>
+
+
+    <div class="callToAction">
+        <p style="font-size: 30px;">
+            Not in the list?
+            Register below...
+        </p>
+    </div>
+
+    <!--form section-->
+    <section class="main">
+        <div class="form">
+            <h2>Register A New Patient</h2>
+            <form class="input">
+                <h3>Personal Details</h3>
+
+                <!--part one for personal details-->
+                <div id="personal">
+                    <input id="nameInput" class="typing" type="text" placeholder="Full Name...">
+                    <input id="ageInput" class="typing" type="number" placeholder="Age...">
+                    <select id="genders" name="Gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input id="phoneNumberInput" class="typing" type="tel" placeholder="Phone Number">
+                    <input id="emailInput" class="typing" type="email" placeholder="Email Address">
+                    <input id="homeAddressInput" class="typing" type="text" placeholder="Home Address">
+                </div>
+                
+            </form>
+            <form class="input">
+                <h3>Medical Information</h3>
+                <!--form part of medical details-->
+                <div id="medical">
+                    <p style="font-weight: 200;">Diagnosis</p>
+                    <input id="diagnosisInput" class="typing" type="text" placeholder="Diagnosis">
+                    <p style="font-weight: 200;">Admission Date</p>
+                    <input id="admissionDateInput" class="typing" type="date" placeholder="Admission Date...">
+                    <p style="font-weight: 200;">Follow-Up Date</p>
+                    <input id="followUpDateInput" class="typing" type="date" placeholder="Follow-Up Date ...">
+                    <p style="font-weight: 200;">Discharge Date</p>
+                    <input id="dischargeDateInput" class="typing" type="date" placeholder="Discharge Date...">
+                </div>  
+            </form>    
+            <form class="input">
+                <h3>Emergency Contact</h3>
+                <!--part for emergency contacts-->
+                <div id="emergency">
+                    <input id="emergencyNameInput" class="typing" type="text" placeholder="Name...">
+                    <input id="emergencyRelationInput" class="typing" type="text" placeholder="Relationship...">
+                    <input id="emergencyPhoneInput" class="typing" type="tel" placeholder="Phone Number">
+                </div>
+            </form>
+            <form class="input">
+                <h3>Insurance</h3>
+                <!--part for insurance provider's info-->
+                <div id="insurance">
+                    <input id="insuranceProviderNameInput" class="typing" type="text" placeholder="Provider Name...">
+                    <input id="insurancePolicyNumberinput" class="typing" type="text" placeholder="Policy Number..">
+                </div>
+            </form>
+            <button class="btn" id="button">SUBMIT</button>
+        </div>
+    </section>
+
+    
 
     
 
