@@ -1,0 +1,57 @@
+{
+    "patients": [
+      {
+        "id": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "Male",
+        "phoneNumber": "1234567890",
+        "idNumber": "1234567",
+        "emailAddress": "johndoe@example.com",
+        "homeAddress": "123 Elm Street",
+        "diagnosis": "Flu",
+        "admissionDate": "2024-12-01",
+        "followUpDate": "2024-12-15",
+        "dischargeDate": "2024-12-10",
+        "status": "Admitted",
+        "emergencyContact": {
+          "firstName": "Jane",
+          "lastName": "Doe",
+          "relationship": "Spouse",
+          "phone": "0987654321"
+        },
+        "insurance": {
+          "provider": "HealthCare Inc.",
+          "policyNumber": "HC123456"
+        }
+      },
+      {
+        "id": 2,
+        "firstName": "Mary",
+        "lastName": "Smith",
+        "age": 25,
+        "gender": "Female",
+        "phoneNumber": "2345678901",
+        "idNumber": "7654321",
+        "emailAddress": "marysmith@example.com",
+        "homeAddress": "456 Oak Avenue",
+        "diagnosis": "Allergy",
+        "admissionDate": "2024-11-20",
+        "followUpDate": "2024-12-05",
+        "dischargeDate": "2024-11-25",
+        "status": "Discharged",
+        "emergencyContact": {
+          "firstName": "Tom",
+          "lastName": "Smith",
+          "relationship": "Brother",
+          "phone": "5678901234"
+        },
+        "insurance": {
+          "provider": "Secure Health",
+          "policyNumber": "SH987654"
+        }
+      }
+    ]
+  }
+  

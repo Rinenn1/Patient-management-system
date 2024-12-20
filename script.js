@@ -34,6 +34,8 @@ function validateEmail(email) {
     return email.includes("@") && email.endsWith(".com"); // Must contain "@" and end with ".com"
 }
 
+let patients = [];
+
 // Validate and display data
 function validateAndDisplayData() {
     patientList.innerHTML = "";
@@ -140,24 +142,158 @@ function validateAndDisplayData() {
         patientList.innerHTML = "";
     }
 
-    for (const [key, value] of Object.entries(displayData)) {
-        const broadListCont = document.createElement("ul");
-        const listCont = document.getElementById("patientsList");
-        listCont.appendChild(broadListCont);
-        const broadListItem = document.createElement("li");
-        broadListItem.textContent = `${key}: ${value}`;
-        broadListCont.appendChild(broadListItem);
-        broadListItem.style.display = "flex";
-        broadListItem.style.flexDirection = "row";
-        broadListItem.style.backgroundColor = "#0000ff";
-        broadListItem.style.borderRadius = "10px";
-        broadListItem.style.padding = "10px";
-        broadListItem.style.gap = "10px";
-    }
+    
 }
+
 
 // Attach event listener to the submit button
 submitButton.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent form from refreshing the page
     validateAndDisplayData();
+});
+
+function addPatient() {
+    const newPatient = {
+        firstName: patientFirstName.value.trim(),
+        lastName: patientLastName.value.trim(),
+        age: patientAge.value.trim(),
+        gender: genderInput.value,
+        phone: phoneNumber.value.trim(),
+        id: idNumber.value.trim(),
+        email: emailAddress.value.trim(),
+        address: homeAddress.value.trim(),
+        diagnosis: diagnosis.value.trim(),
+        admissionDate: admissionDate.value,
+        followUpDate: followUpDate.value,
+        dischargeDate: dischargeDate.value,
+        status: 'Admitted' // Default status
+    };
+
+    if (validatePatient(newPatient)) {
+        patients.push(newPatient);
+        renderPatients();
+        clearForm();
+    } else {
+        alert('Please fill out all required fields correctly.');
+    }
+}
+
+// Function to validate patient data
+function validatePatient(patient) {
+    return (
+        patient.firstName &&
+        patient.lastName &&
+        !isNaN(patient.age) &&
+        patient.phone.match(/^\d{10,}$/) &&
+        patient.id &&
+        patient.email.includes('@') && patient.email.includes('.')
+    );
+}
+
+// Function to clear form inputs
+function clearForm() {
+    document.querySelector('form').reset();
+}
+
+// Function to render patient list
+function renderPatients() {
+    patientList.innerHTML = '';
+
+    patients.forEach((patient, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'patient-item';
+
+        // Add patient details
+        listItem.innerHTML = `
+            <div>
+                <span class="patient-name">${patient.firstName} ${patient.lastName}</span> -
+                <span class="patient-status">${patient.status}</span>
+            </div>
+            <div class="newBtns">
+                <button onclick="viewPatient(${index})" class="viewBtn">View</button>
+                <button onclick="removePatient(${index})" class="removeBtn">Remove</button>
+                <select onchange="updateStatus(${index}, this.value)" class="updateBtn">
+                    <option value="Admitted" ${patient.status === 'Admitted' ? 'selected' : ''}>Admitted</option>
+                    <option value="Follow-Up" ${patient.status === 'Follow-Up' ? 'selected' : ''}>Follow-Up</option>
+                    <option value="Discharged" ${patient.status === 'Discharged' ? 'selected' : ''}>Discharged</option>
+                </select>
+            </div>
+            
+        `;
+
+        patientList.appendChild(listItem);
+    });
+}
+
+// Function to view patient details
+function viewPatient(index) {
+    const patient = patients[index];
+    alert(`
+        Name: ${patient.firstName} ${patient.lastName}
+        Age: ${patient.age}
+        Gender: ${patient.gender}
+        Phone: ${patient.phone}
+        ID: ${patient.id}
+        Email: ${patient.email}
+        Address: ${patient.address}
+        Diagnosis: ${patient.diagnosis}
+        Admission Date: ${patient.admissionDate}
+        Follow-Up Date: ${patient.followUpDate}
+        Discharge Date: ${patient.dischargeDate}
+        Status: ${patient.status}
+    `);
+}
+
+// Function to remove a patient
+function removePatient(index) {
+    if (confirm('Are you sure you want to remove this patient?')) {
+        patients.splice(index, 1);
+        renderPatients();
+    }
+}
+
+// Function to update patient status
+function updateStatus(index, newStatus) {
+    patients[index].status = newStatus;
+    renderPatients();
+}
+
+// Function to search patients
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+
+    const filteredPatients = patients.filter(patient =>
+        `${patient.firstName} ${patient.lastName}`.toLowerCase().includes(query)
+    );
+
+    patientList.innerHTML = '';
+    filteredPatients.forEach((patient, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'patient-item';
+
+        listItem.innerHTML = `
+            <div>
+                <span class="patient-name">${patient.firstName} ${patient.lastName}</span> -
+                <span class="patient-status">${patient.status}</span>
+            </div>
+                <button onclick="viewPatient(${index})" class="viewBtn">View</button>
+                <button onclick="removePatient(${index})" class="removeBtn">Remove</button>
+                <select onchange="updateStatus(${index}, this.value)" class="updateBtn">
+                    <option value="Admitted" ${patient.status === 'Admitted' ? 'selected' : ''}>Admitted</option>
+                    <option value="Follow-Up" ${patient.status === 'Follow-Up' ? 'selected' : ''}>Follow-Up</option>
+                    <option value="Discharged" ${patient.status === 'Discharged' ? 'selected' : ''}>Discharged</option>
+                </select>
+            
+        `;
+
+        patientList.appendChild(listItem);
+    });
+
+    
+});
+
+// Event listener for adding patients
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    addPatient();
 });

@@ -171,6 +171,51 @@ body {
     padding: 1rem;
 }
 
+.newBtns {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.viewBtn{
+    padding: 0.4rem;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0.625rem;
+}
+
+.viewBtn:hover{
+    color: #000;
+    background-color: #EDF1F4;
+}
+
+.removeBtn{
+    padding: 0.4rem;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0.625rem;
+}
+
+.removeBtn:hover{
+    color: #000;
+    background-color: #EDF1F4;
+}
+
+.updateBtn{
+    padding: 0.4rem;
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0.625rem;
+}
+
+.updateBtn:hover{
+    color: #000;
+    background-color: #EDF1F4;
+}
+
 footer {
     display: flex;
     justify-content: center;
